@@ -1,0 +1,37 @@
+ Nombre del
+  archivo				Descripcion
+------------   	---------------------------------
+PROG01.CPP		Lee 100 numeros e imprime cuantos 
+			hay positivos, negatovos y nulos
+PROG02.CPP		Lee secuencia de numeros y termina
+			cuando se introduce un numero nulo ("0")
+PROG03.CPP		Eleva a la n-sima potencia el numero x
+PROG04.CPP		Obtiene producto mediante sumas sucesivas
+PROG05.CPP		Obtiene cociente y residuo mediante restas sucesivas
+PROG06.CPP		Ordena 3 numeros y dice si fueron o no
+			introducidos en ese orden
+PROG07.CPP		Calcula la serie E= 1/0!+ 1/1! + 1/2! + ... + 1/N!
+PROG08.CPP		Calcula los numeros perfectos entre el 1 y el 1000
+PROG09.CPP		Calcula el MCD por el metodo de Euclides
+PROG10.CPP		Evalua un polinomia a la N-sima potencia
+PROG11.CPP		Determina si 2 numeros son amigos
+CLASE01.CPP		Elabora la tabla de multiplicar de un numero N 
+			usando DO WHILE
+CLASE02.CPP		Elabora la tabla de multiplicar de un numero N 
+			usando FOR
+CLASE03.CPP		Elabora la tabla de multiplicar de un numero N 
+			usando WHILE
+CLASE04.CPP		Menu de las operaciones basicas usando IF
+CLASE05.CPP		Calcula el factorial hasta N!
+CLASE06.CPP		Evalua la serie 1 + 2 + 3 + 4 + ... + 1000
+CLASE07.CPP		Calcula los primeros N! numeros primos
+CLASE08.CPP		Menu de las operaciones basicas usando SWITCH
+EXAMEN.CPP		Convierte de numeros Arabigos a Numeros ROMANOS
+
+
+						Adan Garcia Quiroz
+						ESIME CULHUACAN (IPN)
+					http://www.geocities.com/adn_mex
+					mailto:  adn.mex@correoweb.com
+						Marzo 2001
+

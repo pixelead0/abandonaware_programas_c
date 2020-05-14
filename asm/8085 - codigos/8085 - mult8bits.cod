@@ -1,0 +1,36 @@
+8085 Machine Code File
+2000 LHLD 2800   2A ; 
+2001             00 ; 
+2002             28 ; 
+2003 MOV A L     7D ; 
+2004 ANA H       A4 ; 
+2005 JZ  2019    CA ; 
+2006 DAD D       19 ; 
+2007             20 ; 
+2008 XRA A       AF ; 
+2009 MOV E L     5D ; 
+200A MOV C H     4C ; 
+200B MOV D A     57 ; 
+200C MOV H A     67 ; 
+200D DCR C       0D ; 
+200E DAD D       19 ; 
+200F DCR C       0D ; 
+2010 CMP C       B9 ; 
+2011 JNZ 200E    C2 ; 
+2012             0E ; 
+2013             20 ; 
+2014 SHLD 2802   22 ; 
+2015             02 ; 
+2016             28 ; 
+2017 RET         C9 ; 
+2018 NOP         00 ; 
+2019 MOV H A     67 ; 
+201A MOV L A     6F ; 
+201B JMP 2014    C3 ; 
+201C             14 ; 
+201D             20 ; 
+Data
+2800 FF ;
+2801 05 ;
+2802 00 ;
+2803 00 ;

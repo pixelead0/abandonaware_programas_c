@@ -1,0 +1,141 @@
+8085 Machine Code File
+2100 LXI SP2050  31 ; CARGA PILA
+2101             50 ; 
+2102             20 ; 
+2103 MVI A 0D    3E ; INICIALIZA PUERTOS
+2104             0D ; 
+2105 OUT 20      D3 ; 
+2106             20 ; 
+2107 IN  21      DB ; Toma dato del pto A
+2108             21 ; 
+2109 STA  2010   32 ; lo almacena en 
+210A             10 ; la direccion 2010
+210B             20 ; 
+210C IN  22      DB ; Toma dato del pto B
+210D             22 ; 
+210E STA  2011   32 ; lo almacena en 
+210F             11 ; la direccion 2011
+2110             20 ; 
+2111 CALL2200    CD ; llama a la rutina de suma
+2112             00 ; 
+2113             22 ; 
+2114 CALL2300    CD ; llama a la rutina de despliegue
+2115             00 ; 
+2116             23 ; 
+2117 CALL2400    CD ; LLAMA RUTUNA DE MULTIPLICACION
+2118             00 ;
+2119             24 ;
+211A CALL2300    CD ; LLAMA RUTINA DE DESPLIEGUE
+211B             00 ;
+211C             23 ;
+211D JMP2107     C3 ; REGRESA A TOMAR DATOS
+211E             07 ; DEL PUERTO
+211F             21 ;
+2200 LDA  2010   3A ; *** R U T I N A   D E   S U M A ***
+2201             10 ; Carga dato almacenado  
+2202             20 ; del pto A
+2203 MOV B A     47 ; Mueve el dato al registro B
+2204 LDA  2011   3A ; Carga dato alamcenado 
+2205             11 ; del pto B
+2206             20 ; 
+2207 ADD B       80 ; Hace la suma de A+B
+2208 STA  2012   32 ; el Resultado lo amacena
+2209             12 ; en la localidad 2012
+220A             20 ; 
+220B RET         C9 ; regresa al programa principal
+2300 LDA  2012   3A ; *** R U T I N A   d e   D E S P L I E G U E ***
+2301             12 ; Carga dato que se almaceno
+2302             20 ; que dio como resultado de la operacion
+2303 ANI 0F      E6 ; Se enmascara la primer parte para que
+2304             0F ; despliegue solo el segundo digito del resultato
+2305 MOV L A     6F ; Se mueve el resultado a pa parte alta
+2306 MVI H 20    26 ; Se mueve a la parte baja un 20
+2307             20 ; ya que la tabla esta apartir de la direccion 20 00 
+2308 MVI A 00    3E ; se configura el pto para el                  H  L
+2309             00 ; display
+230A OUT 2B      D3 ; (5) (4) (3) (2)     (1) (0)
+230B             2B ;  vamos a usar primero el display 0
+230C MOV A M     7E ; Se mueve lo que tenemos en H y L al acumulador
+230D OUT 29      D3 ; se despliega el contenido en 
+230E             29 ; el display
+230F CALL2800    CD ; Se llama  a la RUTINA DE RETARDO
+2310             00 ; 
+2311             28 ; 
+2312 LDA  2012   3A ; Cargamos otra vez el dado del
+2313             12 ; resultado
+2314             20 ; 
+2315 ANI F0      E6 ; APlicamos la misma tecnica pero para
+2316             F0 ; mostrar ahora el primer caracter
+2317 MVI B 04    06 ; 
+2318             04 ; Hacemos 4 rotaciones para que el resultado
+2319 RRC         0F ; nos quede en el msb
+231A DCR B       05 ; 
+231B JNZ 2319    C2 ; 
+231C             19 ; 
+231D             23 ; 
+231E MOV L A     6F ;  Movemos el acumulador a la parte Alta
+231F MVI A 01    3E ; Activamos el display numero 1
+2320             01 ; 
+2321 OUT 2B      D3 ; se confg el puerto
+2322             2B ; 
+2323 MOV A M     7E ; se carga la direccion en el acumulador
+2324 OUT 29      D3 ; se despliega el resultado en el display
+2325             29 ; 
+2326 CALL2800    CD ; llamamos a la rutina de retardo
+2327             00 ; 
+2328             28 ; 
+2329 RET         C9 ; regresamos al prog principal
+2400 LDA 2010    3A ; *** R U T I N A   D E   M U L T I P L I C A C I O N  ***
+2401             10 ; Cargamos el dato del pto A
+2402             20 ;
+2403 MOV B A     47 ; lo movemos al registeo B
+2404 LDA 2011    3A ; cargamos el otro dato
+2405             11 ;
+2406             20 ;
+2407 MOV A C     79 ; lo movemos a C
+2408 CPI 00      FE ;  compacamoa si es igual a cero
+2409             00 ; 
+240A JZ 241D     CA ;  en caso de que sea 0
+240B             1D ;  guardamos un 0 como resultado
+240C             24 ;  y salimos de la rutina
+240D DCR C       0D ; Se decrementa C
+240E MOV A B     78 ; movemos B a A
+240F ADD B       80 ; Sumamos B al acumulador
+2410 DCR C       0D ; Se decrementa C
+2411 JNZ 240F    C2 ; Vuelve sumar A + B
+2412             0F ; y hasta que C=0 sale del ciclo
+2413             24 ; 
+2414 STA 2012    3A ; Se guarda el resultado de la
+2415             12 ; multiplicacion en 2012
+2416             20 ;
+2417 RET         C9 ; Se sale de la rutina
+2800 MVI B 01    06 ; subrutina de retardo
+2801             01 ; 
+2802 MVI C 01    0E ; 
+2803             01 ; 
+2804 DCR C       0D ; 
+2805 JNZ 2804    C2 ; 
+2806             04 ; 
+2807             28 ; 
+2808 DCR B       05 ; 
+2809 JNZ 2804    C2 ; 
+280A             04 ; 
+280B             28 ; 
+280C RET         C9 ; 
+Data
+2000 BF ; Muestra un 0 en el display
+2001 86 ; Muestra un 1 en el display
+2002 DB ; Muestra un 2 en el display
+2003 CF ; Muestra un 3 en el display
+2004 E6 ; Muestra un 4 en el display
+2005 ED ; Muestra un 5 en el display
+2006 FD ; Muestra un 6 en el display
+2007 87 ; Muestra un 7 en el display
+2008 FF ; Muestra un 8 en el display
+2009 EF ; Muestra un 9 en el display
+200A F7 ; Muestra una A en el display
+200B FC ; Muestra una B en el display
+200C B9 ; Muestra una C en el display
+200D BE ; Muestra una D en el display
+200E F9 ; Muestra una E en el display
+200F F1 ; Muestra una F en el display

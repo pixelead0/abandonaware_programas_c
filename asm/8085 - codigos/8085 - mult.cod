@@ -1,0 +1,26 @@
+8085 Machine Code File
+0000 MVI B 09    06 ; To Multiply two 8 bit numbers (by repeated additions) to get a 16 bit result stored in Accumulator
+0001 UserMod     09 ; First Number
+0002 MVI C 05    0E ; 
+0003 UserMod     05 ; Second Number
+0004 MOV A C     79 ; 
+0005 CPI 00      FE ; 
+0006             00 ; 
+0007 JZ  0017    CA ; 
+0008 UserMod     17 ; 
+0009             00 ; 
+000A DCR C       0D ; 
+000B MOV A B     78 ; 
+000C MVI D 00    16 ; 
+000D             00 ; 
+000E ADD B       80 ; 
+000F JNC 0013    D2 ; 
+0010 UserMod     13 ; 
+0011             00 ; 
+0012 INR D       14 ; 
+0013 DCR C       0D ; 
+0014 JNZ 000E    C2 ; 
+0015 UserMod     0E ; 
+0016             00 ; 
+0017 HLT         76 ; 
+Data
